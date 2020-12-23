@@ -1,0 +1,138 @@
+.App {
+    position: relative;
+    width: 100%;
+    max-height: 100vh;
+    padding: 0 2px;
+    .tracking-tabs {
+        min-height: 100vh;
+        max-height: 100vh;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        .cargoList {
+            height: 90%;
+            .table-container {
+                height: 100%;
+                padding: 0 2px;
+                .editDiv,.addTracking {
+                    background: #fff;
+                    width: 300px;
+                    height: auto;
+                    position: absolute;
+                    padding: 5px;
+                    border-radius: 5px;
+                    box-shadow:0 1px 4px rgba(0, 0, 0, 0.3), 0 0 20px rgba(0, 0, 0, 0.1) inset;
+                    left: 80%;
+                    top: 50%;
+                    transform: translateY(-50%);
+                    z-index: 999;
+                }
+                .editDiv:before, .editDiv:after,.addTracking:before,.addTracking:after{
+                    position:absolute;
+                    content:"";
+                    top:5px;bottom:5px;left:0;right:0;
+                    box-shadow:0 0 25px 3px lightblue;
+                    border-radius:100px/10px;
+                    z-index:-1;
+                }
+                .cargoList-table{
+                    table-layout: fixed;
+                    word-wrap:break-word;
+                    .cargoTableBody {
+                        overflow-y: scroll;
+                        tr td {
+                            width: 100px;
+                            white-space: nowrap;
+                            overflow: hidden;
+                            text-overflow: ellipsis;
+                        }
+
+                        tr td:hover {
+                            height: auto;
+                            white-space: normal;
+                        }
+                    }
+                }
+                .searchDiv {
+                    position: relative;
+                    input {
+                        text-indent: 15px;
+                    }
+                    .searchIcon {
+                        position: absolute;
+                        left:0;
+                    }
+                }
+            }
+            .table-container:hover{
+                overflow-y: scroll;
+            }
+            .awbHistory {
+                ul{
+                    max-height: 70vh;
+                    width: 85%;
+                    overflow: hidden;
+                    &:hover{
+                        overflow-y: scroll;
+                    }
+                }
+            }
+            .containerHistory {
+                ul{
+                    max-height: 70vh;
+                    width: 85%;
+                    overflow: hidden;
+                    &:hover{
+                        overflow-y: scroll;
+                    }
+                }
+            }
+        }
+
+}
+    .tracking-detail {
+        background-color: ghostwhite;
+        min-height: 100vh;
+        max-height: 100vh;
+        .checkpoint {
+            height: 30vh;
+            overflow: hidden;
+        }
+        .relatedCargos:hover,.checkpoint:hover {
+            overflow-y: scroll;
+        }
+        .relatedCargos {
+            max-height: 20vh;
+            overflow: hidden;
+        }
+        .airTracking {
+            .iframe{
+                min-height: 90vh;
+            }
+        }
+        .oceanTracking {
+            .iframe{
+                min-height: 90vh;
+            }
+        }
+    }
+    .hideLeftPart {
+        width: 20px;
+        height: 20px;
+        position: absolute;
+        top: 95%;
+        right: 2%;
+        cursor: pointer;
+        z-index: 9999;
+    }
+}
+#alertDiv {
+    width: 80%;
+    height: 50px;
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: -1;
+    opacity: 0;
+}

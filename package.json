@@ -1,21 +1,83 @@
 {
   "name": "tracking",
   "version": "0.1.0",
+  "main": "main.js",
   "private": true,
+  "description": "Easy Tracking Satus of Express、Air Shipment、Ocean Container.",
+  "author": {
+    "name": "JerryZheng",
+    "email": "418695314@qq.com"
+  },
   "dependencies": {
-    "@testing-library/jest-dom": "^5.11.5",
-    "@testing-library/react": "^11.1.1",
-    "@testing-library/user-event": "^12.2.0",
-    "react": "^17.0.1",
-    "react-dom": "^17.0.1",
-    "react-scripts": "4.0.0",
-    "web-vitals": "^0.2.4"
+    "bootstrap": "^4.5.3",
+    "electron-is-dev": "^1.2.0",
+    "web-vitals": "^0.2.4",
+    "xlsx": "^0.16.8"
   },
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "dev": "concurrently \"cross-env BROWSER=none npm start\" \"wait-on http://localhost:3000 && electron .\"",
+    "pack": "electron-builder --dir",
+    "dist": "electron-builder",
+    "prepack": "npm run build",
+    "predist": "npm run build"
+  },
+  "homepage": "./",
+  "build": {
+    "appId": "easyTracking",
+    "productName": "EasyTracking",
+    "copyright": "Copyright © 2020 ${author}",
+    "compression": "maximum",
+    "extends": null,
+    "directories": {
+      "buildResources": "assests",
+      "output": "build"
+    },
+    "files": [
+      "build/**/*",
+      "node_modules/**/*",
+      "package.json/**/*",
+      "main.js"
+    ],
+    "dmg": {
+      "background": "assests/easyTracking.png",
+      "icon": "assests/easyTracking.icns",
+      "iconSize": 100,
+      "contents": [
+        {
+          "x": 410,
+          "y": 150,
+          "type": "link",
+          "path": "/Applications"
+        },
+        {
+          "x": 130,
+          "y": 150,
+          "type": "file"
+        }
+      ]
+    },
+    "mac": {
+      "category": "public.app-category.productivity",
+      "artifactName": "${productName}-${version}-${arch}.${ext}"
+    },
+    "win": {
+      "icon": "assests/easyTracking.ico",
+      "target": [
+        "msi",
+        "nsis"
+      ],
+      "artifactName": "${productName}-web-Setup-${version}.${ext}",
+      "publisherName": "JerryZheng"
+    },
+    "nsis": {
+      "allowToChangeInstallationDirectory": true,
+      "oneClick": false,
+      "perMachine": false
+    }
   },
   "eslintConfig": {
     "extends": [
@@ -34,5 +96,26 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "@fortawesome/fontawesome-svg-core": "^1.2.32",
+    "@fortawesome/free-brands-svg-icons": "^5.15.1",
+    "@fortawesome/free-solid-svg-icons": "^5.15.1",
+    "@fortawesome/react-fontawesome": "^0.1.12",
+    "@testing-library/jest-dom": "^5.11.5",
+    "@testing-library/react": "^11.1.1",
+    "@testing-library/user-event": "^12.2.0",
+    "classnames": "^2.2.6",
+    "concurrently": "^5.3.0",
+    "cross-env": "^7.0.2",
+    "electron": "^10.1.5",
+    "electron-builder": "^22.9.1",
+    "node-sass": "^4.14.1",
+    "qs": "^6.9.4",
+    "react": "^17.0.1",
+    "react-dom": "^17.0.1",
+    "react-scripts": "4.0.0",
+    "uuid": "^8.3.1",
+    "wait-on": "^5.2.0"
   }
 }

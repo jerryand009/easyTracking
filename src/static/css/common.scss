@@ -1,0 +1,67 @@
+body {
+    margin: 0;
+    padding: 0;
+    background-color: #ffffff;
+* {
+    margin: 0;
+    padding: 0;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    font-family: "微软雅黑","Times New Roman",Georgia,Serif;
+    font-size: 12px;
+}
+}
+input {
+    outline: none;
+    border:none;
+}
+a {
+    text-decoration: none;
+    color:#222;
+}
+li {
+    list-style: none;
+}
+.float-left{
+    float: left;
+}
+.float-right{
+    float: right;
+}
+.clear-fix:after{
+    display: table;
+    content:'';
+    clear:both;
+}
+.displayNone {
+    display: none;
+}
+* {
+    /* 定义滚动条样式 */
+    ::-webkit-scrollbar {
+        width: 6px;
+        height: 6px;
+        background-color: rgba(240, 240, 240, 1);
+    }
+
+    /*定义滚动条轨道 内阴影+圆角*/
+    ::-webkit-scrollbar-track {
+        box-shadow: inset 0 0 0px rgba(240, 240, 240, .5);
+        border-radius: 10px;
+        background-color: rgba(240, 240, 240, .5);
+    }
+
+    /*定义滑块 内阴影+圆角*/
+    ::-webkit-scrollbar-thumb {
+        border-radius: 10px;
+        box-shadow: inset 0 0 0px rgba(240, 240, 240, .5);
+        background-color: rgba(210, 210, 210, .5);
+    }
+}
+.pointer {
+    cursor: pointer;
+}
+.width-70{
+    width: 70px;
+}
