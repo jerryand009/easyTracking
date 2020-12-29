@@ -35,10 +35,27 @@ const Edit = ({editRowId,setEditRowId,getTableData,popMsg})=>{
         }else{
             obj[k] = value;
         }
+        if (k==="ata"){
+            obj[k] = (value==="1970-01-01" || value==="") ?null:new Date(value);
+            obj["status"] = "已送达"
+        }
         obj["id"] = data["id"];
         if (data.hasOwnProperty("pieces")){obj["pieces"] = data["pieces"] }
-        if (data.hasOwnProperty("checkPoints")){obj["checkPoints"] = data["checkPoints"] }
-        if (data.hasOwnProperty("responseErrors")){obj["responseErrors"] = data["responseErrors"] }
+        if (data.hasOwnProperty("checkPoints")){
+            obj["checkPoints"] = data["checkPoints"]
+        }else{
+            obj["checkPoints"] = []
+        }
+        if (data.hasOwnProperty("responseErrors")){
+            obj["responseErrors"] = data["responseErrors"]
+        }else{
+            obj["responseErrors"] = {}
+        }
+        if (data.hasOwnProperty("comment")){
+            obj["comment"] = data["comment"]
+        }else{
+            obj["comment"] = ""
+        }
         if (data.hasOwnProperty("timestamp")){obj["timestamp"] = new Date() }
         setData(obj);
     };

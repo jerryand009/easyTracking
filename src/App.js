@@ -60,7 +60,7 @@ function App() {
         }).then(res=>{
             console.log("update Table");
             console.log("更新table",res);
-            let cleanRes = res.filter(item=>item.id!=="airHistory" && item.id!=="containerHistory");
+            let cleanRes = res.filter(item=>item.id!=="awbHistory" && item.id!=="containerHistory");
             setCargos(cleanRes);
         });
     };
@@ -175,11 +175,11 @@ function App() {
     // awb & container searchHistory
     useEffect(()=>{
         db_Open(dbName,expressStore).then(db=>{
-            return db_FindById(db,expressStore,"airHistory")
+            return db_FindById(db,expressStore,"awbHistory")
         }).then(res=>{
             if (res.hasOwnProperty("error")){
                 db_Open(dbName,expressStore).then(db=>{
-                    db_Add(db,expressStore,{id:"airHistory",airHistory:[]})
+                    db_Add(db,expressStore,{id:"awbHistory",awbHistory:[]})
                 });
                 return
             }
@@ -229,9 +229,9 @@ function App() {
                 let historyAWBList = [awb,...awbHistory];
                 setAwbHistory(historyAWBList);
                 db_Open(dbName,expressStore).then(db=>{
-                    return db_Update(db,expressStore,{id:"airHistory",awbHistory:historyAWBList})
+                    return db_Update(db,expressStore,{id:"awbHistory",awbHistory:historyAWBList})
                 }).then(res=>{
-                    console.log("airHistory List:",res);
+                    console.log("awbHistory List:",res);
                 });
             }
             // 页面中没有webview-air时，创建webview-air并插入页面
@@ -442,10 +442,10 @@ function App() {
                                             </div>:""
                                     }
                                     <div className="awbHistory mt-3 h5 alert-light">
-                                        {awbHistory.length>0?"Previous searches:":""}
+                                        {awbHistory && awbHistory.length>0?"Previous searches:":""}
                                         <ul className="list-group mt-2">
                                         {
-                                            awbHistory.map((item,index)=>{
+                                            awbHistory && awbHistory.map((item,index)=>{
                                                 return <li className="list-group-item pointer align-items-center" key={index}
                                                            onClick={()=>{setAwb(item);airTracking(item)}}>
                                                     <span>{item}</span>
@@ -455,7 +455,7 @@ function App() {
                                                             let historyAwb = [...awbHistory.slice(0,index),...awbHistory.slice(index+1)];
                                                             setAwbHistory(historyAwb);
                                                             db_Open(dbName,expressStore).then(db=>{
-                                                                return db_Update(db,expressStore,{id:"airHistory",awbHistory:historyAwb})
+                                                                return db_Update(db,expressStore,{id:"awbHistory",awbHistory:historyAwb})
                                                             }).then(res=>{console.log("airHistroy Edited:",res)})
                                                         }
                                                     }>&times;</span>
@@ -501,7 +501,7 @@ function App() {
                                             </div>:""
                                     }
                                     <div className="mt-3 h5 alert-light">
-                                        {containerHistory.length>0?"Previous searches:":""}
+                                        {containerHistory && containerHistory.length>0?"Previous searches:":""}
                                         <ul className="containerHistory list-group mt-3 w-75 overflow-auto">
                                         {
                                             containerHistory.map((item,index)=>{

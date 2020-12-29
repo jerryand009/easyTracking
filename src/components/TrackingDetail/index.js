@@ -8,6 +8,7 @@ import classNames from 'classnames'
 const {ipcRenderer} = window.require('electron');
 const datefmt = "YYYY-mm-dd HH:MM";
 const TrackingDetail = ({currentCargo,isLoading,networkError,trackingResult})=>{
+    console.log("trackingResult",trackingResult);
     const [showRelatedCargos,setShowRelatedCargos] = useState(true);
     const setHref = (tracking)=>{
         switch (currentCargo.forwarder) {

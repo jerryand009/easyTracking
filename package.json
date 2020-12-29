@@ -1,6 +1,6 @@
 {
   "name": "tracking",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "main": "main.js",
   "private": true,
   "description": "Easy Tracking Satus of Express、Air Shipment、Ocean Container.",
@@ -11,9 +11,11 @@
   "dependencies": {
     "bootstrap": "^4.5.3",
     "electron-is-dev": "^1.2.0",
+    "electron-updater": "^4.3.5",
     "web-vitals": "^0.2.4",
     "xlsx": "^0.16.8"
   },
+  "publish": ["github"],
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
@@ -22,6 +24,8 @@
     "dev": "concurrently \"cross-env BROWSER=none npm start\" \"wait-on http://localhost:3000 && electron .\"",
     "pack": "electron-builder --dir",
     "dist": "electron-builder",
+    "release": "cross-env GH_TOKEN=787ea6d311b53fca78e3609e3c40a5af6f22e8c4 electron-builder",
+    "prerelease": "npm run build",
     "prepack": "npm run build",
     "predist": "npm run build"
   },
